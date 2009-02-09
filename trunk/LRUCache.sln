@@ -7,6 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LRUCacheTest", "LRUCache.LR
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{70352D25-CAA2-4B41-9906-A9271D04BA1A}"
 	ProjectSection(SolutionItems) = preProject
+		lgpl.txt = lgpl.txt
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
 		LRUCacheTest.vsmdi = LRUCacheTest.vsmdi
 	EndProjectSection

@@ -35,9 +35,9 @@ namespace LRUCache
         public TestContext TestContext { get; set; }
 
         [TestMethod]
-        public void OldestObjectIsRemovedWhenCacheIsAtCapacity()
+        public void OldestItemIsRemovedWhenCacheIsAtCapacity()
         {
-            const int capacity = 100;
+            const int capacity = 20;
             LRUCache<object> target = new LRUCache<object>(capacity);
 
             for (int i = 0; i < capacity; i++)
