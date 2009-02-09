@@ -193,5 +193,29 @@ namespace LRUCache
             object not_in_cache = new object();
             Assert.IsFalse(test.Remove(not_in_cache));
         }
+        
+        [TestMethod]
+        public void CacheWithNoCapacityDoesNotDiscardItems()
+        {
+            LRUCache<object> test = new LRUCache<object>(0);
+
+            object firstObject = null;
+            for (int i = 0; i < LRUCache<object>.DefaultCapacity; i++)
+            {
+                object item = new object();
+                firstObject = firstObject ?? item;
+                test.Add(item);
+            }
+            
+            Assert.AreEqual(test.Oldest, firstObject);
+            for (int i = 0; i < LRUCache<object>.DefaultCapacity; i++)
+            {
+                object item = new object();
+                test.Add(item);
+            }
+            Assert.AreEqual(test.Oldest, firstObject);
+
+        }
+
     }
 }

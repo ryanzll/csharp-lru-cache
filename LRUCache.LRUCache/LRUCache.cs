@@ -22,7 +22,12 @@ namespace LRUCache
     public class LRUCache<T> : ICollection<T>
     {
 
-        private const int DefaultCapacity = 1000;
+        private const int _DefaultCapacity = 1000;
+
+        /// <summary>
+        /// The default Capacity that the LRUCache uses if none is provided in the constructor.
+        /// </summary>
+        public static int DefaultCapacity { get { return _DefaultCapacity;  } }
 
         // The list of items in the cache.  New items are added to the end of the list;
         // existing items are moved to the end when added; the items thus appear in
@@ -44,7 +49,7 @@ namespace LRUCache
         /// Initializes a new instance of the LRUCache class that is empty and has the default
         /// capacity.
         /// </summary>
-        public LRUCache() : this(DefaultCapacity) {}
+        public LRUCache() : this(_DefaultCapacity) {}
 
         /// <summary>
         /// Initializes a new instance of the LRUCache class that is empty and has the specified
@@ -53,7 +58,7 @@ namespace LRUCache
         /// <param name="capacity"></param>
         public LRUCache(int capacity)
         {
-            if (capacity <= 0)
+            if (capacity < 0)
             {
                 throw new InvalidOperationException("LRUCache capacity must be positive.");
             }
@@ -95,8 +100,9 @@ namespace LRUCache
         /// of the list and becomes the newest item in the LRUCache.
         /// </summary>
         /// <param name="item">The item that is being used.</param>
-        /// <remarks>If the LRUCache is at its capacity, this method will discard the oldest
-        /// item, raising the DiscardingOldestItem event before it does so.</remarks>
+        /// <remarks>If the LRUCache has a nonzero capacity, and it is at its capacity, this 
+        /// method will discard the oldest item, raising the DiscardingOldestItem event before 
+        /// it does so.</remarks>
         public void Add(T item)
         {
             lock (Lock)
@@ -108,7 +114,7 @@ namespace LRUCache
                     return;
                 }
                 
-                if (Count >= Capacity)
+                if (Count >= Capacity && Capacity != 0)
                 {
                     EventHandler h = DiscardingOldestItem;
                     if (h != null)
