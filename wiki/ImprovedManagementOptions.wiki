@@ -22,6 +22,4 @@ It seems to me that I could add a `ResourcesAvailableDelegate` property to the `
 cache.ResourcesAvailableDelegate += ResourcesAvailable;
 }}}
 
-is a lot more concise than the code shown above, and it also seems to muddy the separation of concerns a bit.  So I probably won't do this.
-
-But one thing I _do_ need to do is allow the class's `Capacity` to be set to 0 in the constructor, and have the `Add` method pass on discarding items if the cache has no capacity set.
+is a lot more concise than the code shown above, and it also seems to muddy the separation of concerns a bit.  So I probably won't do this unless someone can persuade me it's a good idea.
